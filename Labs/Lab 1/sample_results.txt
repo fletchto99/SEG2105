@@ -1,0 +1,35 @@
+Average time for initializing C PointCP: 52ns
+
+Average time for initializing C PointCPD2: 106ns
+
+Average time for initializing C PointCPD4: 105ns
+
+Average time for initializing P PointCP: 50ns
+
+Average time for initializing P PointCPD2: 51ns
+
+Average time for initializing P PointCPD4: 51ns
+
+Average time for getting Cartesian from Cartesian PointCP: 5ns
+
+Average time for getting Cartesian from Cartesian PointCPD2: 20ns
+
+Average time for getting Cartesian from Cartesian PointCPD4: 5ns
+
+Average time for getting Polar from Cartesian PointCP: 33ns
+
+Average time for getting Polar from Cartesian PointCPD2: 5ns
+
+Average time for getting Polar from Cartesian PointCPD4: 5ns
+
+Average time for getting Cartesian from Polar PointCP: 5ns
+
+Average time for getting Cartesian from Polar PointCPD2: 5ns
+
+Average time for getting Cartesian from Polar PointCPD4: 5ns
+
+Average time for getting Polar from Polar PointCP: 5ns
+
+Average time for getting Polar from Polar PointCPD2: 5ns
+
+Average time for getting Polar from Polar PointCPD4: 5ns
