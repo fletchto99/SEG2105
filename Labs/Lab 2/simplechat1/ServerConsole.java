@@ -4,11 +4,13 @@
 
 package simplechat1;
 
-import java.io.*;
-
-import simplechat1.client.*;
-import simplechat1.common.*;
+import simplechat1.common.ChatIF;
+import simplechat1.common.Message;
 import simplechat1.server.EchoServer;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * This class constructs the UI for a chat client.  It implements the
@@ -67,7 +69,8 @@ public class ServerConsole implements ChatIF {
 
             while (true) {
                 message = fromConsole.readLine();
-                server.sendToAllClients("SERVER MSG>" + message);
+                server.handleMessageFromServerConsole(message);
+                this.display(message, Message.ORIGIN_SERVER);
             }
         } catch (Exception ex) {
             System.out.println
@@ -81,7 +84,8 @@ public class ServerConsole implements ChatIF {
      *
      * @param message The string to be displayed.
      */
-    public void display(String message) {
+    public void display(String message, int origin) {
+        //We know that all messages through here will be from the console hence a server message, so there's no need to check the origin
         System.out.println("SERVER MSG> " + message);
     }
 

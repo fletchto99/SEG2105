@@ -4,10 +4,11 @@
 
 package simplechat1.client;
 
-import ocsf.client.*;
-import simplechat1.common.*;
+import ocsf.client.AbstractClient;
+import simplechat1.common.ChatIF;
+import simplechat1.common.Message;
 
-import java.io.*;
+import java.io.IOException;
 
 /**
  * This class overrides some of the methods defined in the abstract
@@ -38,11 +39,12 @@ public class ChatClient extends AbstractClient {
      * @param clientUI The interface type variable.
      */
 
-    public ChatClient(String host, int port, ChatIF clientUI)
+    public ChatClient(String username, String host, int port, ChatIF clientUI)
             throws IOException {
         super(host, port); //Call the superclass constructor
         this.clientUI = clientUI;
-        openConnection();
+        this.openConnection();
+        this.sendToServer("#login " + username);
     }
 
 
@@ -62,6 +64,7 @@ public class ChatClient extends AbstractClient {
     @Override
     public void connectionException(Exception exception) {
         System.out.println("Lost Connection to Server. Exiting.");
+        quit();
     }
 
     /**
@@ -70,7 +73,12 @@ public class ChatClient extends AbstractClient {
      * @param msg The message from the server.
      */
     public void handleMessageFromServer(Object msg) {
-        clientUI.display(msg.toString());
+        if (msg instanceof Message) {
+            Message message = (Message) msg;
+            clientUI.display(message.getMessage(), message.getOrigin());
+        } else {
+            System.out.println("RAW MSG>" + msg.toString());
+        }
     }
 
     /**
@@ -78,11 +86,12 @@ public class ChatClient extends AbstractClient {
      *
      * @param message The message from the UI.
      */
-    public void handleMessageFromClientUI(String message) {
+    public void handleMessageFromClientConsole(String message) {
         //*** E50: Implement client side commands
         if (message.startsWith("#")) {
-            String[] command = message.split(" ");
-            switch (command[0]) {
+            String[] parameters = message.split(" ");
+            String command = parameters[0];
+            switch (command) {
                 case "#exit":
                     quit();
                     break;
@@ -97,14 +106,14 @@ public class ChatClient extends AbstractClient {
                     if (this.isConnected()) {
                         System.out.println("Can't do that now. Already connected.");
                     } else {
-                        this.setHost(command[1]);
+                        this.setHost(parameters[1]);
                     }
                     break;
                 case "#setport":
                     if (this.isConnected()) {
                         System.out.println("Can't do that now. Already connected.");
                     } else {
-                        this.setPort(Integer.parseInt(command[1]));
+                        this.setPort(Integer.parseInt(parameters[1]));
                     }
                     break;
                 case "#login":
@@ -132,7 +141,7 @@ public class ChatClient extends AbstractClient {
                 sendToServer(message);
             } catch (IOException e) {
                 clientUI.display
-                        ("Could not send message to server.  Terminating client.");
+                        ("Could not send message to server.  Terminating client.", Message.ORIGIN_CLIENT);
                 quit();
             }
         }
