@@ -2,10 +2,10 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package simplechat1;
+package simplechat;
 
-import simplechat1.client.ChatClient;
-import simplechat1.common.ChatIF;
+import simplechat.client.ChatClient;
+import simplechat.common.ChatIF;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,9 +50,7 @@ public class ClientConsole implements ChatIF {
         try {
             client = new ChatClient(username, host, port, this);
         } catch (IOException exception) {
-            exception.printStackTrace();
-            System.out.println("Error: Can't setup connection! Terminating client.");
-            System.exit(1);
+            System.out.println("Cannot open connection.  Awaiting command.");
         }
     }
 
@@ -91,7 +89,7 @@ public class ClientConsole implements ChatIF {
                 System.out.println("SERVER MESSAGE > " + message);
                 break;
             default:
-                System.out.println("> " + message);
+                System.out.println(message);
         }
     }
 

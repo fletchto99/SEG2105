@@ -2,11 +2,11 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package simplechat1;
+package simplechat;
 
-import simplechat1.common.ChatIF;
-import simplechat1.common.Message;
-import simplechat1.server.EchoServer;
+import simplechat.common.ChatIF;
+import simplechat.common.Message;
+import simplechat.server.EchoServer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -85,6 +85,9 @@ public class ServerConsole implements ChatIF {
      * @param message The string to be displayed.
      */
     public void display(String message, int origin) {
+        if (message.startsWith("#")) {
+            return;
+        }
         //We know that all messages through here will be from the console hence a server message, so there's no need to check the origin
         System.out.println("SERVER MSG> " + message);
     }

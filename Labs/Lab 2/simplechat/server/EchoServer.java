@@ -2,13 +2,13 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package simplechat1.server;
+package simplechat.server;
 
 //**** Changed for E49 MY; import InetAddress
 
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
-import simplechat1.common.Message;
+import simplechat.common.Message;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -44,15 +44,16 @@ public class EchoServer extends AbstractServer {
      * /**
      * This method overrides the implementation found in AbstractServer
      */
-    protected void clientConnected(ConnectionToClient client) {
+    @Override
+    public synchronized void clientConnected(ConnectionToClient client) {
         InetAddress newClientIP = client.getInetAddress();
         Message msg = new Message("Welcome client at " + newClientIP.getHostAddress() + " !!", Message.ORIGIN_SERVER);
         this.sendToAllClients(msg);
     }
 
-    synchronized protected void clientDisconnected(ConnectionToClient client) {
-        InetAddress oldClientIP = client.getInetAddress();
-        Message msg = new Message("Goodbye client at " + oldClientIP.toString() + " !!", Message.ORIGIN_SERVER);
+    @Override
+    public synchronized void clientDisconnected(ConnectionToClient client) {
+        Message msg = new Message(client.getInfo("username") + " has logged off!", Message.ORIGIN_SERVER);
         this.sendToAllClients(msg);
     }
 
@@ -89,8 +90,8 @@ public class EchoServer extends AbstractServer {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("Message received: " + msg + " from " + client);
-                this.sendToAllClients(new Message(client.getInfo("username") + ": " + message, Message.ORIGIN_CLIENT));
+                System.out.println("Message received: " + msg + " from " + client.getInfo("username"));
+                this.sendToAllClients(new Message(client.getInfo("username") + " > " + message, Message.ORIGIN_CLIENT));
             }
         }
     }

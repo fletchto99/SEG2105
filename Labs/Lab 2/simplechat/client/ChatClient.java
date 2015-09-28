@@ -2,11 +2,11 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package simplechat1.client;
+package simplechat.client;
 
 import ocsf.client.AbstractClient;
-import simplechat1.common.ChatIF;
-import simplechat1.common.Message;
+import simplechat.common.ChatIF;
+import simplechat.common.Message;
 
 import java.io.IOException;
 
@@ -63,7 +63,8 @@ public class ChatClient extends AbstractClient {
      */
     @Override
     public void connectionException(Exception exception) {
-        System.out.println("Lost Connection to Server. Exiting.");
+        System.out.println("WARNING - The server has stopped listening for connections\n" +
+                "SERVER SHUTTING DOWN! DISCONNECTING!");
         quit();
     }
 
@@ -152,7 +153,7 @@ public class ChatClient extends AbstractClient {
      */
     public void quit() {
         try {
-            closeConnection();
+            this.closeConnection();
         } catch (IOException e) {
             //Ignored since the application is exiting anyways
         }
