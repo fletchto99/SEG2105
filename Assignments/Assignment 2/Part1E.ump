@@ -1,0 +1,78 @@
+class Currency
+{
+    isA FinancialInstrument;
+1 -- * ExchangeRate;
+}
+
+class CanadianDollars
+{
+  isA Currency;
+}
+
+class USDollars
+{
+  isA Currency;
+}
+
+class ExchangeRate
+{
+}
+
+class Bank
+{
+  1 -- * BankBranch;
+  1 -- * BankAccount;
+  * -- * Currency;
+}
+
+class DebitCard
+{
+}
+
+class CreditCard
+{
+  * -- 1 CreditUnion;
+}
+
+class Visa
+{
+  isA CreditCard;
+}
+
+class MasterCard
+{
+  isA CreditCard;
+}
+
+class BankAccount
+{
+  1 -- * DebitCard;
+  1 -- * Cheque;
+}
+
+class BankBranch
+{
+}
+
+class Cheque
+{
+}
+
+class CreditUnion
+{
+  * -- * Currency;
+  * -- * Loan;
+}
+
+class ATM
+{
+  * -- * Bank;
+}
+
+class FinancialInstrument
+{
+}
+
+class Loan
+{
+}

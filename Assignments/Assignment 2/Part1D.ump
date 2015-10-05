@@ -1,0 +1,107 @@
+class Student
+{
+  isA Person;
+}
+
+class GraduateStudent
+{
+    isA Student;
+}
+
+class TeachingAssistant
+{
+  isA GraduateStudent;
+  }
+
+class Classroom
+{
+  isA Room;
+}
+
+class Building
+{
+  1 -- * Room;
+}
+
+class Labratory
+{
+  isA Room;
+  * -- * Technician;
+}
+
+class Course
+{
+  * -- * Program;
+  1 -- * Section;
+}
+
+class Section
+{
+  * -- * Tutorial;
+  * -- * TeachingAssistant;
+  * -- * Student;
+}
+
+class AdministrativeAssistant
+{
+  isA Person;
+  * -- 1 RegistrationSystem;
+}
+
+class TimeSlot
+{
+  time;
+day;
+Boolean repeating;
+* -- * Tutorial;
+}
+
+class Gym
+{
+  isA Room;
+}
+
+class Tutorial
+{
+}
+
+class Professor
+{
+  isA Person;
+  * -- * Section;
+}
+
+class Program
+{
+  * -- 1 RegistrationSystem;
+  }
+
+class Technician
+{
+  isA Person;
+}
+
+class MeetingRoom
+{
+  isA Room;
+}
+
+class RegistrationSystem
+{
+}
+
+class Exam
+{
+  * -- * TimeSlot;
+  1 -- 1 Section;
+    * -- 1 Room;
+}
+
+class Person
+{
+    }
+
+class Room
+{
+  1 -- 1 Tutorial;
+}

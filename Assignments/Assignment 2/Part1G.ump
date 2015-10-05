@@ -1,0 +1,49 @@
+class InsurancePolicy
+{
+  * -- 1 PolicyRenewal;
+}
+
+class Claim
+{
+  * -- 1 Client;
+  1 -- * InsuredProperty;
+}
+
+class Client
+{
+  * -- * InsurancePolicy;
+  1 -- * InsuredProperty;
+}
+
+class Deductible
+{
+  1 -- 1 InsuredProperty;
+}
+
+class InsuredProperty
+{
+}
+
+class AutomobilePolicy
+{
+  isA InsurancePolicy;
+}
+
+class LifeInsurance
+{
+  isA InsurancePolicy;
+}
+
+class HomePolicy
+{
+  isA InsurancePolicy;
+}
+
+class Beneficiary
+{
+  * -- * InsurancePolicy;
+}
+
+class PolicyRenewal
+{
+}
