@@ -1,4 +1,13 @@
 out
 .DS_Store
+gradlew
 
 SEG2015.iml
+
+*.properties
+*.gradle
+gradlew.*
+
+build/
+gradle/
+captures/
