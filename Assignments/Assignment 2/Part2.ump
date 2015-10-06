@@ -1,22 +1,22 @@
 class Account
 {
-  username;
-  password;
-  Integer id;
-  realName;
-* -- 1 TopHat;
+	username;
+	password;
+	Integer id;
+	realName;
+	* -- 1 TopHat;
 }
 
 class Professor
 {
-  isA Account;
-  1 -- 1 Section;
+	isA Account;
+	1 -- 1 Section;
 }
 
 class Student
 {
-  cellPhone;
-isA Account;
+  	cellPhone;
+	isA Account;
 }
 
 class TopHat
@@ -25,49 +25,49 @@ class TopHat
 
 class Course
 {
-  courseCode;
-public void setSection(Section arg0){
+	courseCode;
+	public void setSection(Section arg0){
 
+	}
+	* -- 1 TopHat;
+	1 -- * Section;
 }
-* -- 1 TopHat;
-  1 -- * Section;
-  }
 
 class Section
 {
-  sectionLabel;
-public void createQuestion(Professor arg0){
+	sectionLabel;
+	public void createQuestion(Professor arg0){
 
-}
-public void answerQuestion(Student arg0,Question arg1,Answer arg2){
+	}
+	public void answerQuestion(Student arg0,Question arg1,Answer arg2){
 
-}
-1 -- * Student;
+	}
+	1 -- * Student;
 }
 
 class Question
 {
-   status;
-public void setActive(Boolean arg0){
+	status;
+	public void setActive(Boolean arg0){
 
-}
-public void addAnswer(Answer arg0){
+	}
+	public void addAnswer(Answer arg0){
 
-}
-* -- * Section;
+	}
+	* -- * Section;
 }
 
 class Grade
 {
-  public Integer calculateTotalGrade(){
+	public Integer calculateTotalGrade(){
 
-}
-* -- 1 Student;
-        * -- * Question;
+    }
+	* -- 1 Student;
+    * -- 1..* Question;
 }
 
-class Answer
+class Answer 
 {
-  Integer value;
-1..* -- 1 Question;
+  	Integer value;
+	1..* -- 1 Question;
 }
