@@ -74,6 +74,7 @@ public class ChatClient extends AbstractClient {
      * @param msg The message from the server.
      */
     public void handleMessageFromServer(Object msg) {
+        //*** E50: Listen for proper message object
         if (msg instanceof Message) {
             Message message = (Message) msg;
             clientUI.display(message.getMessage(), message.getOrigin());
@@ -124,8 +125,7 @@ public class ChatClient extends AbstractClient {
                         try {
                             this.openConnection();
                         } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
+                            System.out.println("Error opening connection to server. Perhaps the server is not running!");
                         }
                     }
                     break;

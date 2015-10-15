@@ -6,7 +6,7 @@ package simplechat;
 
 import simplechat.common.ChatIF;
 import simplechat.common.Message;
-import simplechat.server.EchoServer;
+import simplechat.server.ChatServer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class ServerConsole implements ChatIF {
     /**
      * The instance of the client that created this ConsoleChat.
      */
-    EchoServer server;
+    ChatServer server;
 
 
     //Constructors ****************************************************
@@ -46,7 +46,7 @@ public class ServerConsole implements ChatIF {
      * @param port The port to connect on.
      */
     public ServerConsole(int port) {
-        server = new EchoServer(port);
+        server = new ChatServer(port);
         try {
             server.listen();
         } catch (IOException e) {
@@ -67,8 +67,7 @@ public class ServerConsole implements ChatIF {
                     new BufferedReader(new InputStreamReader(System.in));
             String message;
 
-            while (true) {
-                message = fromConsole.readLine();
+            while ((message = fromConsole.readLine()) != null) {
                 server.handleMessageFromServerConsole(message);
                 this.display(message, Message.ORIGIN_SERVER);
             }

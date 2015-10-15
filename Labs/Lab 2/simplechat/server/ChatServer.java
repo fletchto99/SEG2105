@@ -23,7 +23,7 @@ import java.net.InetAddress;
  * @author Paul Holden
  * @version July 2000
  */
-public class EchoServer extends AbstractServer {
+public class ChatServer extends AbstractServer {
 
     //Constructors ****************************************************
 
@@ -32,7 +32,7 @@ public class EchoServer extends AbstractServer {
      *
      * @param port The port number to connect on.
      */
-    public EchoServer(int port) {
+    public ChatServer(int port) {
         super(port);
     }
 
@@ -40,8 +40,8 @@ public class EchoServer extends AbstractServer {
     //Instance methods ************************************************
 
     /****
-     * Changed for E49 MY
-     * /**
+     * Changed for E49
+     *
      * This method overrides the implementation found in AbstractServer
      */
     @Override
@@ -59,8 +59,7 @@ public class EchoServer extends AbstractServer {
 
 
     /****
-     * Changed for E50 MY
-     * /**
+     * Changed for E50
      * This method handles any messages received from the client.
      *
      * @param msg    The message received from the client.
@@ -140,7 +139,8 @@ public class EchoServer extends AbstractServer {
                     break;
                 case "#setport":
                     if (!this.isListening() && this.getNumberOfClients() < 1) {
-                        this.setPort(Integer.parseInt(parameters[1]));
+                        super.setPort(Integer.parseInt(parameters[1]));
+                        System.out.println("Port set to " + Integer.parseInt(parameters[1]));
                     } else {
                         System.out.println("Can't do that now. Server is connected.");
                     }
@@ -166,4 +166,3 @@ public class EchoServer extends AbstractServer {
         }
     }
 }
-//End of EchoServer class

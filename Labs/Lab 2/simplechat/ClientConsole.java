@@ -63,17 +63,14 @@ public class ClientConsole implements ChatIF {
      */
     public void accept() {
         try {
-            BufferedReader fromConsole =
-                    new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
             String message;
 
-            while (true) {
-                message = fromConsole.readLine();
+            while ((message = fromConsole.readLine()) != null) {
                 client.handleMessageFromClientConsole(message);
             }
         } catch (Exception ex) {
-            System.out.println
-                    ("Unexpected error while reading from console!");
+            System.out.println("Unexpected error while reading from console!");
         }
     }
 
