@@ -95,16 +95,16 @@ public class ClientConsole implements ChatIF {
 
     /**
      * This method is responsible for the creation of the Client UI.
-     *
-     * @param args[0] The host to connect to.
-     * @param args[1] The port to use for connection
      */
     public static void main(String[] args) {
-        //**** Changed for E49: Added Exceptions for port input
         String host;
         int port;
         String username;
 
+        /*
+         * Modified for E51
+         * Require a login ID
+         */
         try {
             username = args[0];
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -119,7 +119,10 @@ public class ClientConsole implements ChatIF {
             host = "localhost";
         }
 
-
+        /*
+         * Modified for E49
+         * Allow more than just the default port
+         */
         try {
             port = Integer.parseInt(args[2]);
         } catch (Exception e) {

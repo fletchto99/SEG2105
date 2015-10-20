@@ -39,8 +39,8 @@ public class ChatServer extends AbstractServer {
 
     //Instance methods ************************************************
 
-    /****
-     * Changed for E49
+    /*
+     * modified for E49
      * This method overrides the implementation found in AbstractServer
      */
     @Override
@@ -52,8 +52,24 @@ public class ChatServer extends AbstractServer {
         System.out.println(message);
     }
 
+    /*
+     * Modified for E49
+     * Override the client disconnected to let everyone know the user left
+     */
     @Override
     public synchronized void clientDisconnected(ConnectionToClient client) {
+        String message = client.getInfo("username") + " has logged off!";
+        Message msg = new Message(message, Message.ORIGIN_SERVER);
+        this.sendToAllClients(msg);
+        System.out.println(message);
+    }
+
+    /*
+     * Modified for E49
+     * Override the client exception to let everyone know the user left
+     */
+    @Override
+    public synchronized void clientException(ConnectionToClient client, Throwable exception) {
         String message = client.getInfo("username") + " has logged off!";
         Message msg = new Message(message, Message.ORIGIN_SERVER);
         this.sendToAllClients(msg);
@@ -116,8 +132,11 @@ public class ChatServer extends AbstractServer {
                 ("Server has stopped listening for connections.");
     }
 
+    /*
+     * Implemented for E50
+     * Server side commands
+     */
     public void handleMessageFromServerConsole(String message) {
-        //*** E50: Implement client side commands
         if (message.startsWith("#")) {
             String[] parameters = message.split(" ");
             String command = parameters[0];
@@ -162,8 +181,10 @@ public class ChatServer extends AbstractServer {
                 case "#getport":
                     System.out.println("Current port is " + this.getPort());
                     break;
+                default:
+                    System.out.println("Invalid command: '" + command+ "'");
+                    break;
             }
-
         } else {
             this.sendToAllClients(new Message(message, Message.ORIGIN_SERVER));
         }

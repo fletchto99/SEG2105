@@ -44,6 +44,8 @@ public class ChatClient extends AbstractClient {
         super(host, port); //Call the superclass constructor
         this.clientUI = clientUI;
         this.openConnection();
+
+        //Modified for E51: Automatically login
         this.sendToServer("#login " + username);
     }
 
@@ -51,7 +53,8 @@ public class ChatClient extends AbstractClient {
     //Instance methods ************************************************
 
     /**
-     *
+     * Modified for E49
+     * An event to fire when the connection to the server has been closed
      */
     @Override
     public void connectionClosed() {
@@ -84,12 +87,12 @@ public class ChatClient extends AbstractClient {
     }
 
     /**
-     * This method handles all data coming from the UI
+     * Implemented for E50: Client side commands
      *
+     * This method handles all data coming from the UI
      * @param message The message from the UI.
      */
     public void handleMessageFromClientConsole(String message) {
-        //*** E50: Implement client side commands
         if (message.startsWith("#")) {
             String[] parameters = message.split(" ");
             String command = parameters[0];
@@ -135,8 +138,10 @@ public class ChatClient extends AbstractClient {
                 case "#getport":
                     System.out.println("Current port is " + this.getPort());
                     break;
+                default:
+                    System.out.println("Invalid command: '" + command+ "'");
+                    break;
             }
-
         } else {
             try {
                 sendToServer(message);
