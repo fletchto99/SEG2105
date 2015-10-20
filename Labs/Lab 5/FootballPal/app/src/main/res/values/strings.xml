@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Football Pal</string>
+    <string name="team_name" >Team Name</string>
+    <string name="image_description">Your team\'s logo</string>
+    <string name="address">Team address</string>
+    <string name="map_button">View in map</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="avatar_selection">Select Avatar</string>
+    <string name="from_phone">Load from phone…</string>
+</resources>
