@@ -41,20 +41,23 @@ public class ChatServer extends AbstractServer {
 
     /****
      * Changed for E49
-     *
      * This method overrides the implementation found in AbstractServer
      */
     @Override
     public synchronized void clientConnected(ConnectionToClient client) {
         InetAddress newClientIP = client.getInetAddress();
-        Message msg = new Message("Welcome client at " + newClientIP.getHostAddress() + " !!", Message.ORIGIN_SERVER);
+        String message = "Welcome client at " + newClientIP.getHostAddress() + " !!";
+        Message msg = new Message(message, Message.ORIGIN_SERVER);
         this.sendToAllClients(msg);
+        System.out.println(message);
     }
 
     @Override
     public synchronized void clientDisconnected(ConnectionToClient client) {
-        Message msg = new Message(client.getInfo("username") + " has logged off!", Message.ORIGIN_SERVER);
+        String message = client.getInfo("username") + " has logged off!";
+        Message msg = new Message(message, Message.ORIGIN_SERVER);
         this.sendToAllClients(msg);
+        System.out.println(message);
     }
 
 
