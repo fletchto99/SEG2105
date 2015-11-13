@@ -1,0 +1,57 @@
+class Application {
+
+    Application {
+
+        Created {
+            [!(allStudentInfo && allRecLetters)] -> Incomplete;
+            [allStudentInfo && allRecLetters] -> Complete;
+        }
+
+        Complete {
+            [tooClose]->Postponed;
+            [!tooClose]->UnderEvaluation;
+        }
+
+        PostPoned {
+            entry/{notifyStudent();}
+        }
+
+        Incomplete {
+
+            //One concurrent -- how to model in umple?
+            WaitingForStudentInformation {
+                verify[studentInfo]->ReceivedStudentInfo;
+            }
+
+            ReceivedStudentInfo {
+                entry\{!allStudentInfo();}->WaitingForStudentInfo;
+                allStudentInfo->Application;
+            }
+
+            //second concurrent -- how to model in umple?
+            WaitingForRecLetters {
+                verify[studentInfo]->ReceivedRecLetter;
+            }
+
+            ReceivedRecLetters {
+                entry\{!hasRecLetter();}->WaitingForRecLetters;
+                hasRecLetter->Application;
+            }
+        }
+
+        UnderEvaluation {
+            [acceptable]->Accepted;
+            [!acceptable]->Rejected;
+        }
+
+        Accepted {
+            entry/{acceptStudent();}
+        }
+
+        Rejected {
+            entry/{rejectStudent();}
+        }
+
+    }
+
+}
