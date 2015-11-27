@@ -1,0 +1,79 @@
+class User
+{
+}
+
+class SurveyMaker
+{
+  isA User;
+}
+
+class SurveyTaker
+{
+  isA User;
+}
+
+class Account
+{
+  1 -- 1 SurveyMaker;
+  * -- * Survey;
+}
+
+class Survey
+{
+}
+
+class Item
+{
+  * -- * Page;
+  }
+
+class Page
+{
+  1..* -- * Survey;
+}
+
+class ExplainText
+{
+
+  1 -- 1 Answer;
+  * -- * Item;
+  1 -- 1 Question;
+}
+
+class MultipleChoiceAnswer
+{
+
+  isA Answer;
+}
+
+class MultipleChoiceOption
+{
+  1..* -- * MultipleChoiceAnswer;
+}
+
+class TextAnswer
+{
+
+  isA Answer;
+}
+
+class Answer
+{
+
+ 1 -- * Question;
+}
+
+class Question
+{
+  isA Item;
+}
+
+class BoolAnswer
+{
+  isA Answer;
+}
+
+class IntAnswer
+{
+  isA Answer;
+}
