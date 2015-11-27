@@ -1,0 +1,8 @@
+class Model{
+  ConnectionToClient{
+    Stuff -> IDLE;
+    IDLE{
+      ConnectionToClient -> NS;
+    }
+  }
+}
