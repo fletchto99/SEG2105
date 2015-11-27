@@ -1,0 +1,44 @@
+class Hotel {
+    1 <@>- * QualityLevel;
+    1 -- * Guest;
+    String name;
+}
+
+class QualityLevel {
+    1 -- * Stay;
+    1 -- * Room;
+    String name;
+    String level;
+    String characteristics;
+    String maximumPrice;
+    String pricePerExtraPerson;
+    String numberOfCategories;
+}
+
+class Guest {
+    1 -- * Stay;
+    String name;
+    String address;
+    String phoneNumber;
+}
+
+class Stay {
+    * -- * Room;
+    String id;
+    String arrivalDate;
+    String numberOfNights;
+    String roomChargePerNight;
+    String numberOfPersons;
+    String categoryNumber;
+}
+
+class Room {
+    0..2 -- 0..2 Room adjoin;
+    String name;
+    String roomNumber;
+    String numberOfBeds;
+    String typeOfBeds;
+    String smoking;
+    String category;
+
+}
