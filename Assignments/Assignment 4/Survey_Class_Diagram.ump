@@ -10,6 +10,7 @@ class SurveyMaker
 class SurveyTaker
 {
   isA User;
+  * -- * Survey;
 }
 
 class Account
@@ -74,4 +75,20 @@ class BoolAnswer
 class IntAnswer
 {
   isA Answer;
+}
+
+class Server
+{
+}
+
+class MasterNode
+{
+  isA Server;
+  1 -- * Survey;
+}
+
+class SlaveNode
+{
+  isA Server;
+  3..* -- * Survey;
 }
