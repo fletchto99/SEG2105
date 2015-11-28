@@ -34,8 +34,6 @@ class Page
 
 class ExplainText
 {
-
-  1 -- 1 Answer;
   * -- * Item;
   1 -- 1 Question;
 }
