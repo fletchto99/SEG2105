@@ -57,10 +57,10 @@ digraph "Survey_State_Diagram" {
         Model_smGatheringData_IDLE2 [label = IDLE2, tooltip = "Class Model, SM sm, State GatheringData.IDLE2"];
         // End State: IDLE2
 
-        // State: QuestionWaitingOnInput
+        // State: WaitingOnInput
 
-        Model_smGatheringData_QuestionWaitingOnInput [label = QuestionWaitingOnInput, tooltip = "Class Model, SM sm, State GatheringData.QuestionWaitingOnInput"];
-        // End State: QuestionWaitingOnInput
+        Model_smGatheringData_WaitingOnInput [label = WaitingOnInput, tooltip = "Class Model, SM sm, State GatheringData.WaitingOnInput"];
+        // End State: WaitingOnInput
 
         // State: AnalyzeInput
 
@@ -115,9 +115,9 @@ digraph "Survey_State_Diagram" {
   
   Model_smGatheringData_Finished -> Model_smGatheringData_IDLE2 [  label = "CloseInstance", tooltip = "From GatheringData.Finished to GatheringData.IDLE2 on CloseInstance" ] ;
   
-  Model_smGatheringData_GetNextQuestion -> Model_smGatheringData_QuestionWaitingOnInput [  label = "GiveQuestion", tooltip = "From GatheringData.GetNextQuestion to GatheringData.QuestionWaitingOnInput on GiveQuestion" ] ;
+  Model_smGatheringData_GetNextQuestion -> Model_smGatheringData_WaitingOnInput [  label = "GiveQuestion", tooltip = "From GatheringData.GetNextQuestion to GatheringData.WaitingOnInput on GiveQuestion" ] ;
   
-  Model_smGatheringData_QuestionWaitingOnInput -> Model_smGatheringData_AnalyzeInput [  label = "InputReceived", tooltip = "From GatheringData.QuestionWaitingOnInput to GatheringData.AnalyzeInput on InputReceived" ] ;
+  Model_smGatheringData_WaitingOnInput -> Model_smGatheringData_AnalyzeInput [  label = "InputReceived", tooltip = "From GatheringData.WaitingOnInput to GatheringData.AnalyzeInput on InputReceived" ] ;
   
   Model_smGatheringData_IDLE2 -> Model_smGatheringData_GetNextQuestion [  label = "CreateNewSurveyInstance", tooltip = "From GatheringData.IDLE2 to GatheringData.GetNextQuestion on CreateNewSurveyInstance" ] ;
   

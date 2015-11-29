@@ -6,7 +6,7 @@ digraph "Survey_Class_Diagram" {
   node [shape=record margin=0; href="javascript:Action.selectClass(&quot;\N&quot;);"];
 
   // Class: User
-  "User" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    User    </td></tr></table>>,
+  "User" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    User    </td></tr><hr/><tr><td align="left" href="" title="string firstName&#13;">  firstName : string  </td></tr><tr><td align="left" href="" title="string lastName&#13;">  lastName : string  </td></tr><tr><td align="left" href="" title="string userName&#13;">  userName : string  </td></tr><tr><td align="left" href="" title="string password&#13;">  password : string  </td></tr></table>>,
    tooltip="class User
 "];
 
@@ -25,7 +25,7 @@ digraph "Survey_Class_Diagram" {
 
 
   // Class: Account
-  "Account" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    Account    </td></tr></table>>,
+  "Account" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Account    </td></tr><hr/><tr><td align="left" href="" title="int ID&#13;">  ID : int  </td></tr></table>>,
    tooltip="class Account
 "];
 
@@ -45,9 +45,11 @@ digraph "Survey_Class_Diagram" {
 "];
 
   // Class: ExplainText
-  "ExplainText" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    ExplainText    </td></tr></table>>,
+  "ExplainText" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    ExplainText    </td></tr><hr/><tr><td align="left" href="" title="string text&#13;">  text : string  </td></tr></table>>,
    tooltip="class ExplainText
 "];
+  "ExplainText" -> "Item" [arrowhead="empty"; samehead="gen"];
+
 
   // Class: Answer
   "Answer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    Answer    </td></tr></table>>,
@@ -62,12 +64,12 @@ digraph "Survey_Class_Diagram" {
 
 
   // Class: MultipleChoiceOption
-  "MultipleChoiceOption" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    MultipleChoiceOption    </td></tr></table>>,
+  "MultipleChoiceOption" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    MultipleChoiceOption    </td></tr><hr/><tr><td align="left" href="" title="string response&#13;">  response : string  </td></tr></table>>,
    tooltip="class MultipleChoiceOption
 "];
 
   // Class: TextAnswer
-  "TextAnswer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    TextAnswer    </td></tr></table>>,
+  "TextAnswer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    TextAnswer    </td></tr><hr/><tr><td align="left" href="" title="string response&#13;">  response : string  </td></tr><tr><td align="left" href="" title="int maxSize&#13;">  maxSize : int  </td></tr></table>>,
    tooltip="class TextAnswer
 "];
   "TextAnswer" -> "Answer" [arrowhead="empty"; samehead="gen"];
@@ -81,21 +83,21 @@ digraph "Survey_Class_Diagram" {
 
 
   // Class: BoolAnswer
-  "BoolAnswer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    BoolAnswer    </td></tr></table>>,
+  "BoolAnswer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    BoolAnswer    </td></tr><hr/><tr><td align="left" href="" title="bool response&#13;">  response : bool  </td></tr></table>>,
    tooltip="class BoolAnswer
 "];
   "BoolAnswer" -> "Answer" [arrowhead="empty"; samehead="gen"];
 
 
   // Class: IntAnswer
-  "IntAnswer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    IntAnswer    </td></tr></table>>,
+  "IntAnswer" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    IntAnswer    </td></tr><hr/><tr><td align="left" href="" title="int response&#13;">  response : int  </td></tr></table>>,
    tooltip="class IntAnswer
 "];
   "IntAnswer" -> "Answer" [arrowhead="empty"; samehead="gen"];
 
 
   // Class: Server
-  "Server" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    Server    </td></tr></table>>,
+  "Server" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Server    </td></tr><hr/><tr><td align="left" href="" title="string location&#13;">  location : string  </td></tr><tr><td align="left" href="" title="double IP&#13;">  IP : double  </td></tr></table>>,
    tooltip="class Server
 "];
 
@@ -116,10 +118,9 @@ digraph "Survey_Class_Diagram" {
   // All associations
   "SurveyTaker" -> "Survey" [dir="none", taillabel="* ", headlabel="* ", tooltip="SurveyTaker *  -- *  Survey"];
   "Account" -> "SurveyMaker" [dir="none", taillabel="1 ", headlabel="1 ", tooltip="Account 1  -- 1  SurveyMaker"];
-  "Account" -> "Survey" [dir="none", taillabel="* ", headlabel="* ", tooltip="Account *  -- *  Survey"];
+  "Account" -> "Survey" [dir="forward", arrowhead="diamond", taillabel="* ", headlabel="* ", tooltip="Account *  -<@> *  Survey"];
   "Item" -> "Page" [dir="none", taillabel="* ", headlabel="* ", tooltip="Item *  -- *  Page"];
   "Page" -> "Survey" [dir="none", taillabel="1..* ", headlabel="* ", tooltip="Page 1..*  -- *  Survey"];
-  "ExplainText" -> "Item" [dir="none", taillabel="* ", headlabel="* ", tooltip="ExplainText *  -- *  Item"];
   "ExplainText" -> "Question" [dir="none", taillabel="1 ", headlabel="1 ", tooltip="ExplainText 1  -- 1  Question"];
   "Answer" -> "Question" [dir="none", taillabel="1 ", headlabel="* ", tooltip="Answer 1  -- *  Question"];
   "MultipleChoiceOption" -> "MultipleChoiceAnswer" [dir="none", taillabel="1..* ", headlabel="* ", tooltip="MultipleChoiceOption 1..*  -- *  MultipleChoiceAnswer"];

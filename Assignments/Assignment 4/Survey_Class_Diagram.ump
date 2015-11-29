@@ -1,26 +1,35 @@
 class User
 {
+  string firstName;
+  string lastName;
+  string userName;
+  string password;
 }
 
 class SurveyMaker
 {
   isA User;
+  void createSurvey(){};
 }
 
 class SurveyTaker
 {
   isA User;
   * -- * Survey;
+  void loadSavedSurvey(int ID){};
 }
 
 class Account
 {
   1 -- 1 SurveyMaker;
-  * -- * Survey;
+  * <@>- * Survey;
+  int accountID;
 }
 
 class Survey
 {
+  void getInstanceFromMaster(){};
+  integer instanceID;
 }
 
 class Item
@@ -35,8 +44,9 @@ class Page
 
 class ExplainText
 {
-  * -- * Item;
+  isA Item;
   1 -- 1 Question;
+  string text;
 }
 
 class MultipleChoiceAnswer
@@ -48,17 +58,19 @@ class MultipleChoiceAnswer
 class MultipleChoiceOption
 {
   1..* -- * MultipleChoiceAnswer;
+  string response;
 }
 
 class TextAnswer
 {
 
   isA Answer;
+  string response;
+  int maxSize;
 }
 
 class Answer
 {
-
  1 -- * Question;
 }
 
@@ -70,26 +82,31 @@ class Question
 class BoolAnswer
 {
   isA Answer;
+  bool response;
 }
 
 class IntAnswer
 {
   isA Answer;
+  int response;
 }
 
 class Server
 {
-  getInstance();
+  string location;
+  double ipAddress;
 }
 
 class MasterNode
 {
   isA Server;
   1 -- * Survey;
+  void pushChangesToSlaves(){};
 }
 
 class SlaveNode
 {
   isA Server;
   3..* -- * Survey;
+  void syncToMaster(){};
 }
