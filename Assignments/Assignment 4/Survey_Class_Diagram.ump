@@ -79,6 +79,7 @@ class IntAnswer
 
 class Server
 {
+  getInstance();
 }
 
 class MasterNode
