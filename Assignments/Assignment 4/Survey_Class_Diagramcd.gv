@@ -25,12 +25,12 @@ digraph "Survey_Class_Diagram" {
 
 
   // Class: Account
-  "Account" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Account    </td></tr><hr/><tr><td align="left" href="" title="int ID&#13;">  ID : int  </td></tr></table>>,
+  "Account" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Account    </td></tr><hr/><tr><td align="left" href="" title="int accountID&#13;">  accountID : int  </td></tr></table>>,
    tooltip="class Account
 "];
 
   // Class: Survey
-  "Survey" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="10"><tr><td>    Survey    </td></tr></table>>,
+  "Survey" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Survey    </td></tr><hr/><tr><td align="left" href="" title="integer instanceID&#13;">  instanceID : integer  </td></tr></table>>,
    tooltip="class Survey
 "];
 
@@ -97,7 +97,7 @@ digraph "Survey_Class_Diagram" {
 
 
   // Class: Server
-  "Server" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Server    </td></tr><hr/><tr><td align="left" href="" title="string location&#13;">  location : string  </td></tr><tr><td align="left" href="" title="double IP&#13;">  IP : double  </td></tr></table>>,
+  "Server" [shape=plaintext margin=0 label=<<table border="1" cellspacing="0" cellborder="0" cellpadding="2"><tr><td cellpadding="4">    Server    </td></tr><hr/><tr><td align="left" href="" title="string location&#13;">  location : string  </td></tr><tr><td align="left" href="" title="double ipAddress&#13;">  ipAddress : double  </td></tr></table>>,
    tooltip="class Server
 "];
 
@@ -118,7 +118,7 @@ digraph "Survey_Class_Diagram" {
   // All associations
   "SurveyTaker" -> "Survey" [dir="none", taillabel="* ", headlabel="* ", tooltip="SurveyTaker *  -- *  Survey"];
   "Account" -> "SurveyMaker" [dir="none", taillabel="1 ", headlabel="1 ", tooltip="Account 1  -- 1  SurveyMaker"];
-  "Account" -> "Survey" [dir="forward", arrowhead="diamond", taillabel="* ", headlabel="* ", tooltip="Account *  -<@> *  Survey"];
+  "Account" -> "Survey" [dir="back", arrowtail="diamond", taillabel="* ", headlabel="* ", tooltip="Account *  <@>- *  Survey"];
   "Item" -> "Page" [dir="none", taillabel="* ", headlabel="* ", tooltip="Item *  -- *  Page"];
   "Page" -> "Survey" [dir="none", taillabel="1..* ", headlabel="* ", tooltip="Page 1..*  -- *  Survey"];
   "ExplainText" -> "Question" [dir="none", taillabel="1 ", headlabel="1 ", tooltip="ExplainText 1  -- 1  Question"];
