@@ -6,37 +6,57 @@ digraph "E169_State_Machine" {
 
   // Class: Model
 
-    // Top and Bottom Level StateMachine: ConnectionToClient
+    // Top and Bottom Level StateMachine: sm
     
     // Start states are shown as a black circle
     node [shape = point, fillcolor="black", width=0.2 ];
-    start_Model_ConnectionToClient [ tooltip = "Class Model, SM ConnectionToClient, State start" ];
+    start_Model_sm [ tooltip = "Class Model, SM sm, State start" ];
     
         
     // Format for normal states
     node [shape = rectangle, width=1,style=rounded];
     
+      // State: Initial
+
+      Model_sm_Initial [label = Initial, tooltip = "Class Model, SM sm, State Initial"];
+      // End State: Initial
+
       // State: IDLE
 
-      Model_ConnectionToClient_IDLE [label = IDLE, tooltip = "Class Model, SM ConnectionToClient, State IDLE"];
+      Model_sm_IDLE [label = IDLE, tooltip = "Class Model, SM sm, State IDLE"];
       // End State: IDLE
 
-      // State: Stuff
+      // State: FINISHED
 
-      Model_ConnectionToClient_Stuff [label = Stuff, tooltip = "Class Model, SM ConnectionToClient, State Stuff"];
-      // End State: Stuff
+      Model_sm_FINISHED [label = FINISHED, tooltip = "Class Model, SM sm, State FINISHED"];
+      // End State: FINISHED
 
-      // State: NS
+      // State: savingData
 
-      Model_ConnectionToClient_NS [label = NS, tooltip = "Class Model, SM ConnectionToClient, State NS"];
-      // End State: NS
-    // End Top and Bottom Level StateMachine: ConnectionToClient
+      Model_sm_savingData [label = savingData, tooltip = "Class Model, SM sm, State savingData"];
+      // End State: savingData
+
+      // State: retrievingData
+
+      Model_sm_retrievingData [label = retrievingData, tooltip = "Class Model, SM sm, State retrievingData"];
+      // End State: retrievingData
+    // End Top and Bottom Level StateMachine: sm
 
   // All transitions
-    start_Model_ConnectionToClient -> Model_ConnectionToClient_IDLE [  tooltip = "start to IDLE" ] ;
-    Model_ConnectionToClient_Stuff -> Model_ConnectionToClient_IDLE [  tooltip = "From Stuff to IDLE automatically" ] ;
+    start_Model_sm -> Model_sm_Initial [  tooltip = "start to Initial" ] ;
+    Model_sm_Initial -> Model_sm_IDLE [  label = "clientConnected", tooltip = "From Initial to IDLE on clientConnected" ] ;
   
-  Model_ConnectionToClient_IDLE -> Model_ConnectionToClient_NS [  label = "ConnectionToClient", tooltip = "From IDLE to NS on ConnectionToClient" ] ;
+  Model_sm_savingData -> Model_sm_IDLE [  label = "returnPassFail", tooltip = "From savingData to IDLE on returnPassFail" ] ;
+  
+  Model_sm_retrievingData -> Model_sm_IDLE [  label = "returnData", tooltip = "From retrievingData to IDLE on returnData" ] ;
+  
+  Model_sm_IDLE -> Model_sm_FINISHED [  label = "close", tooltip = "From IDLE to FINISHED on close" ] ;
+  
+  Model_sm_IDLE -> Model_sm_savingData [  label = "setInfo", tooltip = "From IDLE to savingData on setInfo" ] ;
+  
+  Model_sm_IDLE -> Model_sm_retrievingData [  label = "getInfo", tooltip = "From IDLE to retrievingData on getInfo" ] ;
+  
+  Model_sm_IDLE -> Model_sm_retrievingData [  label = "getInetAddress", tooltip = "From IDLE to retrievingData on getInetAddress" ] ;
   
 
 }

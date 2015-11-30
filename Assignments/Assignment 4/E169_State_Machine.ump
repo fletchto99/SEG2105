@@ -1,8 +1,21 @@
 class Model{
-  ConnectionToClient{
-    Stuff -> IDLE;
+  sm{
+    Initial{
+      clientConnected() -> IDLE;
+    }
     IDLE{
-      ConnectionToClient -> NS;
+      close() -> FINISHED;
+      setInfo() -> savingData;
+      getInfo() -> retrievingData;
+      getInetAddress() -> retrievingData;
+    }
+    FINISHED{
+    }
+    savingData{
+      returnPassFail() -> IDLE;
+    }
+    retrievingData{
+      returnData() -> IDLE;
     }
   }
 }
