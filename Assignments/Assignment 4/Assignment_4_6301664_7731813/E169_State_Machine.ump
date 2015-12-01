@@ -1,0 +1,21 @@
+class Model{
+  sm{
+    Initial{
+      clientConnected() -> IDLE;
+    }
+    IDLE{
+      close() -> FINISHED;
+      setInfo() -> savingData;
+      getInfo() -> retrievingData;
+      getInetAddress() -> retrievingData;
+    }
+    FINISHED{
+    }
+    savingData{
+      returnPassFail() -> IDLE;
+    }
+    retrievingData{
+      returnData() -> IDLE;
+    }
+  }
+}

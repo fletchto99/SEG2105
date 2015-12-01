@@ -1,0 +1,46 @@
+class Model{
+  sm{
+    IDLE{
+      CreateSurvey -> BeingDesigned;
+    }
+    BeingDesigned{
+      FinishedDesign -> BeingTested;
+    }
+    BeingTested{
+      FinishedTesting -> GatheringData;
+      MakeChange -> SavingVersion;
+    }
+    SavingVersion{
+      FinishedSaving -> BeingTested;
+    }
+    GatheringData{
+      IDLE2{
+        CreateNewSurveyInstance() -> GetNextQuestion;
+        LoadSurveyInstance() -> GetNextQuestion;
+      }
+      WaitingOnInput{
+        InputReceived -> AnalyzeInput;
+      }
+      AnalyzeInput{
+        SkipQuestions -> GetNextQuestion;
+        NextQuestion -> GetNextQuestion;
+      }
+      GetNextQuestion{
+        GiveQuestion -> WaitingOnInput;
+        NoMoreQuestions -> SaveResponses;
+      }
+      SaveResponses{
+        FinishedSyncToServers -> Finished;
+      }
+      Finished{
+        GiveSessionIDtoUSER() -> IDLE2;
+        CloseInstance() ->IDLE2;
+      }
+      CloseSurvey -> Closed;
+    }
+    Closed{
+      ReOpen -> GatheringData;
+      Delete -> Deleted;
+    }
+  }
+}
